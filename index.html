@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KalaGram AI - Handmade Crafts</title>
+<style>
+*{box-sizing:border-box}
+:root{--green:#205b43;--cream:#fffaf0;--gold:#e6ad52}
+body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:#26372c}
+header{background:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;box-shadow:0 2px 12px #0001}
+.logo{font-size:25px;font-weight:bold;color:var(--green)}
+nav{display:flex;gap:15px;align-items:center;flex-wrap:wrap}
+nav a{text-decoration:none;color:#26372c;font-weight:bold}
+button,.btn{background:var(--green);color:white;border:0;border-radius:9px;padding:12px 17px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:#347b59}
+.hero{padding:65px 7%;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;background:linear-gradient(120deg,#e7f0df,#fff0d2)}
+.hero h1{font-size:clamp(38px,5vw,62px);margin:12px 0;line-height:1.1}
+.hero h1 span{color:var(--green)}
+.hero p{font-size:17px;line-height:1.8;color:#58675b}
+.artbox{min-height:280px;border-radius:25px;background:#f1d6a3;display:grid;place-items:center;font-size:110px}
+section{padding:48px 7%}
+.heading{text-align:center;margin-bottom:28px}
+.heading h2{font-size:34px;color:var(--green);margin-bottom:8px}
+.heading p{color:#6c786f}
+.search{display:flex;gap:12px;max-width:700px;margin:0 auto 25px}
+input,textarea,select{width:100%;padding:13px;border:1px solid #d5ddd3;border-radius:8px;font:inherit}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.product{background:white;border-radius:16px;padding:14px;box-shadow:0 5px 20px #0001}
+.product-art{height:145px;background:#edf2e7;border-radius:12px;display:grid;place-items:center;font-size:65px}
+.product h3{margin-bottom:8px}
+.product p{font-size:14px;color:#68756a;line-height:1.5;min-height:42px}
+.price{font-size:21px;font-weight:bold;color:var(--green);margin:12px 0}
+.product button{width:100%}
+.cart-section{background:#edf3e9}
+.cartbox{max-width:850px;margin:auto;background:white;padding:22px;border-radius:16px}
+.cart-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #eee}
+.cart-row button{padding:7px 10px;background:#a84635}
+.cart-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:20px}
+.total{font-size:23px;font-weight:bold;color:var(--green)}
+.ai-box{max-width:600px;margin:auto;background:white;padding:22px;border-radius:16px}
+label{display:block;font-weight:bold;margin:13px 0 7px}
+footer{text-align:center;background:#173e2e;color:white;padding:28px;line-height:1.8}
+.modal{display:none;position:fixed;inset:0;background:#10271dcc;z-index:10;padding:16px;overflow:auto;align-items:center;justify-content:center}
+.modal.show{display:flex}
+.modal-card{background:white;width:100%;max-width:500px;border-radius:18px;padding:25px;position:relative;margin:auto}
+.modal-card h2{color:var(--green);margin-top:0}
+.close{position:absolute;right:13px;top:12px;background:#edf3e9;color:var(--green);font-size:22px;padding:6px 12px}
+.summary{background:#f0f5eb;border-radius:10px;padding:13px;margin:15px 0}
+.summary-row{display:flex;justify-content:space-between;gap:10px;margin:8px 0}
+.full{width:100%;margin-top:14px}
+.small{font-size:12px;color:#68756a;line-height:1.6}
+[hidden]{display:none!important}
+@media(max-width:850px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr}}
+@media(max-width:520px){header{justify-content:center}nav{justify-content:center}.products{grid-template-columns:1fr}.search{flex-direction:column}section{padding:35px 5%}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🌿 KalaGram AI</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Shop</a>
+    <a href="#cart">🛒 Cart (<span id="count">0</span>)</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <p><strong>HANDMADE • HEARTFELT • HERITAGE</strong></p>
+    <h1>Every Craft Has a <span>Story.</span></h1>
+    <p>Discover India's beautiful handmade treasures, traditional tribal art and unique creations made with love.</p>
+    <a class="btn" href="#products">Explore Collection →</a>
+  </div>
+  <div class="artbox">🧺🎨🌿</div>
+</section>
+
+<section id="products">
+  <div class="heading">
+    <h2>Our Handmade Collection</h2>
+    <p>Beautiful creations inspired by Indian culture and tradition.</p>
+  </div>
+  <div class="search">
+    <input id="search" placeholder="🔍 Search crafts...">
+    <select id="filter">
+      <option value="all">All Categories</option>
+      <option value="tribal">Tribal Art</option>
+      <option value="seasonal">Seasonal Crafts</option>
+      <option value="bamboo">Bamboo Crafts</option>
+      <option value="jewellery">Jewellery</option>
+    </select>
+  </div>
+
+  <div class="products" id="product-list">
+    <article class="product" data-name="warli tribal art" data-category="tribal" data-price="850">
+      <div class="product-art">🎨</div>
+      <h3>Warli Tribal Art</h3>
+      <p>Traditional tribal artwork for your home.</p>
+      <div class="price">₹850</div>
+      <button class="add">＋ Add to Cart</button>
+    </article>
+    <article class="product" data-name="festival crafts" data-category="seasonal" data-price="299">
+      <div class="product-art">🪔</div>
+      <h3>Festival Crafts</h3>
+      <p>Handmade decorations for special celebrations.</p>
+      <div class="price">₹299</div>
+      <button class="add">＋ Add to Cart</button>
+    </article>
+    <article class="product" data-name="bamboo handicrafts" data-category="bamboo" data-price="450">
+      <div class="product-art">🧺</div>
+      <h3>Bamboo Handicrafts</h3>
+      <p>Nature-inspired handmade bamboo products.</p>
+      <div class="price">₹450</div>
+      <button class="add">＋ Add to Cart</button>
+    </article>
+    <article class="product" data-name="tribal jewellery" data-category="jewellery" data-price="599">
+      <div class="product-art">📿</div>
+      <h3>Tribal Jewellery</h3>
+      <p>Traditional jewellery with unique designs.</p>
+      <div class="price">₹599</div>
+      <button class="add">＋ Add to Cart</button>
+    </article>
+  </div>
+  <p id="no-results" hidden>No matching products found.</p>
+</section>
+
+<section class="cart-section" id="cart">
+  <div class="heading">
+    <h2>Your Shopping Bag 🛍️</h2>
+    <p>Review your favourite crafts and place your order.</p>
+  </div>
+  <div class="cartbox">
+    <div id="cart-items">Your cart is empty.</div>
+    <div class="cart-bottom">
+      <div class="total" id="total">Total: ₹0</div>
+      <div>
+        <button id="clear" style="background:#778278">Clear Cart</button>
+        <button id="order">Order Now →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="finder">
+  <div class="heading">
+    <h2>✨ Craft Finder</h2>
+    <p>Find crafts that fit your budget.</p>
+  </div>
+  <div class="ai-box">
+    <label for="budget">Your budget (₹)</label>
+    <input id="budget" type="number" min="1" value="500">
+    <button id="find" class="full">Find My Crafts</button>
+    <p id="suggestions"></p>
+    <p class="small">This demo recommends products using budget rules.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <h2>🌿 KalaGram AI</h2>
+  <p>Celebrating India's handmade heritage, one craft at a time.</p>
+  <p>School Project Demo ❤️</p>
+</footer>
+
+<!-- ORDER POPUP -->
+<div class="modal" id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+  <div class="modal-card">
+    <button class="close" id="close" aria-label="Close popup">×</button>
+    <h2 id="popup-title">🛍️ Complete Your Order</h2>
+    <p>Enter your details to prepare your order message.</p>
+    <div class="summary">
+      <div id="summary-items"></div>
+      <div class="summary-row" style="border-top:1px solid #d5ddd3;padding-top:12px;font-size:19px;font-weight:bold">
+        <span>Total Amount</span><span id="summary-total">₹0</span>
+      </div>
+    </div>
+    <form id="order-form">
+      <label for="name">Full Name *</label>
+      <input id="name" required maxlength="100" placeholder="Enter your name">
+      <label for="phone">Phone Number *</label>
+      <input id="phone" type="tel" required pattern="[0-9 +()-]{10,18}" maxlength="18" placeholder="Enter your phone number">
+      <label for="address">Delivery Address *</label>
+      <textarea id="address" required maxlength="500" rows="3" placeholder="House, street, city and PIN code"></textarea>
+      <label for="note">Special Instructions (optional)</label>
+      <textarea id="note" maxlength="300" rows="2" placeholder="Any special requests?"></textarea>
+      <button class="full" type="submit">Confirm Order via WhatsApp ↗</button>
+      <p class="small">WhatsApp opens with your order details. You must press Send to submit the order. No online payment is taken.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+// Replace with your shop's WhatsApp number.
+// India format: 91 + 10-digit mobile number, digits only.
+const WHATSAPP_NUMBER = "91YOURMOBILENUMBER";
+
+const cart = [];
+const popup = document.getElementById("popup");
+const productCards = [...document.querySelectorAll(".product")];
+
+function totalPrice() {
+  return cart.reduce((sum, item) => sum + item.price, 0);
+}
+
+function updateCart() {
+  document.getElementById("count").textContent = cart.length;
+  document.getElementById("total").textContent = "Total: ₹" + totalPrice();
+
+  const container = document.getElementById("cart-items");
+  container.replaceChildren();
+
+  if (!cart.length) {
+    container.textContent = "Your cart is empty. Explore our collection!";
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    const row = document.createElement("div");
+    row.className = "cart-row";
+
+    const name = document.createElement("span");
+    name.textContent = item.name + " — ₹" + item.price;
+
+    const remove = document.createElement("button");
+    remove.textContent = "Remove";
+    remove.onclick = () => {
+      cart.splice(index, 1);
+      updateCart();
+    };
+
+    row.append(name, remove);
+    container.append(row);
+  });
+}
+
+document.querySelectorAll(".add").forEach(button => {
+  button.onclick = () => {
+    const card = button.closest(".product");
+    cart.push({
+      name: card.querySelector("h3").textContent,
+      price: Number(card.dataset.price)
+    });
+    updateCart();
+    button.textContent = "✓ Added!";
+    setTimeout(() => button.textContent = "＋ Add to Cart", 900);
+  };
+});
+
+document.getElementById("clear").onclick = () => {
+  cart.length = 0;
+  updateCart();
+};
+
+document.getElementById("order").onclick = () => {
+  if (!cart.length) {
+    alert("Your cart is empty. Please add a product first!");
+    return;
+  }
+
+  const summary = document.getElementById("summary-items");
+  summary.replaceChildren();
+
+  cart.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "summary-row";
+    const name = document.createElement("span");
+    name.textContent = item.name;
+    const price = document.createElement("strong");
+    price.textContent = "₹" + item.price;
+    row.append(name, price);
+    summary.append(row);
+  });
+
+  document.getElementById("summary-total").textContent = "₹" + totalPrice();
+  popup.classList.add("show");
+};
+
+function closePopup() {
+  popup.classList.remove("show");
+}
+document.getElementById("close").onclick = closePopup;
+popup.addEventListener("click", event => {
+  if (event.target === popup) closePopup();
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closePopup();
+});
+
+document.getElementById("order-form").onsubmit = event => {
+  event.preventDefault();
+
+  if (!cart.length) {
+    closePopup();
+    alert("Your cart is empty.");
+    return;
+  }
+
+  if (!/^91\d{10}$/.test(WHATSAPP_NUMBER)) {
+    alert("Please set your shop WhatsApp number in the code first.");
+    return;
+  }
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const note = document.getElementById("note").value.trim();
+
+  const items = cart.map((item, i) =>
+    `${i + 1}. ${item.name} - Rs. ${item.price}`
+  ).join("\n");
+
+  const message =
+`Hello KalaGram AI! I would like to place an order.
+
+CUSTOMER DETAILS
+Name: ${name}
+Phone: ${phone}
+Delivery address: ${address}
+
+ORDER ITEMS
+${items}
+
+TOTAL: Rs. ${totalPrice()}
+${note ? "Special instructions: " + note + "\n" : ""}
+Please confirm product availability and delivery charges.
+Thank you!`;
+
+  const url = "https://wa.me/" + WHATSAPP_NUMBER +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
+// Product search and category filter
+function filterProducts() {
+  const query = document.getElementById("search").value.toLowerCase().trim();
+  const category = document.getElementById("filter").value;
+  let visible = 0;
+
+  productCards.forEach(card => {
+    const matches = card.dataset.name.includes(query) &&
+      (category === "all" || card.dataset.category === category);
+    card.hidden = !matches;
+    if (matches) visible++;
+  });
+
+  document.getElementById("no-results").hidden = visible !== 0;
+}
+document.getElementById("search").addEventListener("input", filterProducts);
+document.getElementById("filter").addEventListener("change", filterProducts);
+
+// Budget-based product suggestions
+document.getElementById("find").onclick = () => {
+  const budget = Number(document.getElementById("budget").value);
+  const output = document.getElementById("suggestions");
+
+  if (!Number.isFinite(budget) || budget <= 0) {
+    output.textContent = "Please enter a valid budget.";
+    return;
+  }
+
+  const matches = productCards.filter(card =>
+    Number(card.dataset.price) <= budget
+  );
+
+  output.textContent = matches.length
+    ? "Recommended: " + matches.map(card =>
+        `${card.querySelector("h3").textContent} (₹${card.dataset.price})`
+      ).join(" • ")
+    : "No products fit this budget. Try a higher amount.";
+};
+
+updateCart();
+</script>
+</body>
+</html>
