@@ -1,1 +1,118 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Description</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .product-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            box-shadow: 0 4px 12px #ddd;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            object-fit: contain;
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .price {
+            color: #198754;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        button {
+            background: #198754;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #146c43;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .product-container {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="product-container">
+
+        <img
+            class="product-image"
+            src="https://placehold.co/300x300?text=Product"
+            alt="Product Image"
+        >
+
+        <div class="product-details">
+            <h1>Wireless Headphones</h1>
+
+            <p class="price">₹1,499</p>
+
+            <p class="description">
+                Enjoy high-quality sound with these wireless
+                headphones. They are lightweight, comfortable,
+                and suitable for music, calls, and everyday use.
+            </p>
+
+            <p><strong>Availability:</strong> In Stock</p>
+
+            <button onclick="alert('Thank you for your interest!')">
+                Buy Now
+            </button>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
