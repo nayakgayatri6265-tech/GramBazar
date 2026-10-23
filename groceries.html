@@ -1,1 +1,381 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Needs - Grocery Store</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f7faf5;
+    color: #222;
+}
+
+header {
+    background: linear-gradient(135deg, #15803d, #65a30d);
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+nav {
+    background: #14532d;
+    text-align: center;
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #fde047;
+}
+
+.intro {
+    text-align: center;
+    padding: 30px 15px 10px;
+}
+
+.intro h2 {
+    color: #15803d;
+    margin-bottom: 8px;
+}
+
+.search-box {
+    display: block;
+    width: 90%;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.products {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.product {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 15px #00000012;
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.product h3 {
+    color: #166534;
+    margin: 14px 0 8px;
+}
+
+.product p {
+    margin: 8px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #dc2626;
+}
+
+.product button,
+#checkout {
+    background: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 11px 18px;
+    margin: 12px 0 18px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.product button:hover,
+#checkout:hover {
+    background: #166534;
+}
+
+.cart {
+    max-width: 800px;
+    margin: 25px auto;
+    padding: 25px;
+    background: #dcfce7;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.cart h2 {
+    margin-bottom: 15px;
+    color: #166534;
+}
+
+.cart ul {
+    list-style: none;
+    margin: 15px 0;
+}
+
+.cart li {
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 7px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: center;
+}
+
+.cart li button {
+    border: none;
+    background: #dc2626;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    background: #14532d;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 6px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛒 Daily Needs Grocery Store</h1>
+    <p>Aapki roz ki zaroorat, ab ek hi jagah!</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="fruits.html">Fruits</a>
+    <a href="groceries.html">Groceries</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<section class="intro">
+    <h2>Hamare Grocery Products</h2>
+    <p>Apni pasand ka samaan chunein aur shopping karein.</p>
+</section>
+
+<input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="🔍 Grocery search karein..."
+    oninput="searchProducts()"
+    aria-label="Search grocery products"
+>
+
+<main class="products" id="products">
+
+    <div class="product" data-name="rice chawal">
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="Rice">
+        <h3>🍚 Rice (Chawal)</h3>
+        <p>Premium quality rice</p>
+        <p class="price">₹60 / kg</p>
+        <button onclick="addToCart('Rice', 60)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="wheat atta gehun">
+        <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80" alt="Wheat">
+        <h3>🌾 Wheat (Gehun)</h3>
+        <p>Fresh quality wheat</p>
+        <p class="price">₹40 / kg</p>
+        <button onclick="addToCart('Wheat', 40)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="milk doodh">
+        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=600&q=80" alt="Milk">
+        <h3>🥛 Milk (Doodh)</h3>
+        <p>Fresh milk</p>
+        <p class="price">₹60 / litre</p>
+        <button onclick="addToCart('Milk', 60)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="oil tel cooking">
+        <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80" alt="Cooking oil">
+        <h3>🫒 Cooking Oil (Tel)</h3>
+        <p>Daily cooking essential</p>
+        <p class="price">₹150 / litre</p>
+        <button onclick="addToCart('Cooking Oil', 150)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="sugar chini">
+        <img src="https://images.unsplash.com/photo-1581441363689-1f3c3c414635?auto=format&fit=crop&w=600&q=80" alt="Sugar">
+        <h3>🍬 Sugar (Chini)</h3>
+        <p>Fine white sugar</p>
+        <p class="price">₹45 / kg</p>
+        <button onclick="addToCart('Sugar', 45)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="salt namak">
+        <img src="https://images.unsplash.com/photo-1518110925495-5fe2fda0442f?auto=format&fit=crop&w=600&q=80" alt="Salt">
+        <h3>🧂 Salt (Namak)</h3>
+        <p>Everyday kitchen essential</p>
+        <p class="price">₹25 / kg</p>
+        <button onclick="addToCart('Salt', 25)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="eggs anda">
+        <img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=600&q=80" alt="Eggs">
+        <h3>🥚 Eggs (Ande)</h3>
+        <p>Fresh eggs</p>
+        <p class="price">₹70 / dozen</p>
+        <button onclick="addToCart('Eggs', 70)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-name="bread">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Bread">
+        <h3>🍞 Bread</h3>
+        <p>Soft and fresh bread</p>
+        <p class="price">₹40 / packet</p>
+        <button onclick="addToCart('Bread', 40)">Add to Cart</button>
+    </div>
+
+</main>
+
+<section class="cart">
+    <h2>🛒 Aapka Shopping Cart</h2>
+    <p id="empty">Abhi cart khaali hai.</p>
+    <ul id="cartItems"></ul>
+    <h3 id="total">Total: ₹0</h3>
+    <button id="checkout" onclick="checkout()">Order Now</button>
+</section>
+
+<footer>
+    <p>© <span id="year"></span> Daily Needs Grocery Store</p>
+    <p>Thank you for shopping with us! ❤️</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+
+    updateCart();
+}
+
+function updateCart() {
+    const list = document.getElementById("cartItems");
+    const empty = document.getElementById("empty");
+
+    list.innerHTML = "";
+    let total = 0;
+
+    empty.style.display = cart.length ? "none" : "block";
+
+    cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+
+        const li = document.createElement("li");
+        const details = document.createElement("span");
+        details.textContent =
+            `${item.name} × ${item.quantity} — ₹${item.price * item.quantity}`;
+
+        const remove = document.createElement("button");
+        remove.textContent = "Remove";
+        remove.onclick = () => {
+            cart.splice(index, 1);
+            updateCart();
+        };
+
+        li.append(details, remove);
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").textContent = "Total: ₹" + total;
+}
+
+function searchProducts() {
+    const query = document.getElementById("search").value.toLowerCase();
+
+    document.querySelectorAll(".product").forEach(product => {
+        const name = product.dataset.name.toLowerCase();
+        product.style.display = name.includes(query) ? "" : "none";
+    });
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Please pehle cart mein products add karein!");
+        return;
+    }
+
+    let total = 0;
+    let message = "Mera Grocery Order:\n\n";
+
+    cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+        message += `${item.name} x ${item.quantity} = ₹${subtotal}\n`;
+    });
+
+    message += `\nTotal Bill: ₹${total}`;
+    alert(message + "\n\nYeh order summary hai. Abhi order shop ko send nahi hua hai.");
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
+
