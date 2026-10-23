@@ -1,1 +1,286 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Fruits Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5fff4;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #16a34a, #84cc16);
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: #166534;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #fde047;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 30px 15px 10px;
+        }
+
+        .intro h2 {
+            color: #15803d;
+            margin-bottom: 10px;
+        }
+
+        .fruit-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .fruit-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 15px #00000015;
+            transition: transform 0.3s;
+        }
+
+        .fruit-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .fruit-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .fruit-card h3 {
+            color: #166534;
+            margin: 15px 0 8px;
+        }
+
+        .fruit-card p {
+            margin: 8px;
+        }
+
+        .price {
+            color: #dc2626;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .fruit-card button {
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 7px;
+            margin: 12px 0 20px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .fruit-card button:hover {
+            background: #166534;
+        }
+
+        #cart {
+            text-align: center;
+            background: #dcfce7;
+            padding: 25px;
+            margin: 20px;
+            border-radius: 12px;
+        }
+
+        #cart button {
+            background: #166534;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        footer {
+            background: #14532d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 29px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🍎 Fresh Fruits Store 🍉</h1>
+        <p>Taaze phal, achhi sehat!</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="fruits.html">Fruits</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <section class="intro">
+        <h2>Hamare Fresh Fruits</h2>
+        <p>Apne pasand ke phal chunein aur order karein.</p>
+    </section>
+
+    <div class="fruit-container">
+
+        <div class="fruit-card">
+            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=600&q=80" alt="Fresh Apples">
+            <h3>🍎 Apple (Seb)</h3>
+            <p>Fresh aur tasty apples</p>
+            <p class="price">₹120 / kg</p>
+            <button onclick="addToCart('Apple', 120)">Add to Cart</button>
+        </div>
+
+        <div class="fruit-card">
+            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=600&q=80" alt="Fresh Bananas">
+            <h3>🍌 Banana (Kela)</h3>
+            <p>Healthy aur energy se bharpur</p>
+            <p class="price">₹50 / dozen</p>
+            <button onclick="addToCart('Banana', 50)">Add to Cart</button>
+        </div>
+
+        <div class="fruit-card">
+            <img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=600&q=80" alt="Fresh Oranges">
+            <h3>🍊 Orange (Santra)</h3>
+            <p>Juicy aur refreshing oranges</p>
+            <p class="price">₹80 / kg</p>
+            <button onclick="addToCart('Orange', 80)">Add to Cart</button>
+        </div>
+
+        <div class="fruit-card">
+            <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=600&q=80" alt="Fresh fruits">
+            <h3>🍇 Fruit Mix</h3>
+            <p>Mixed seasonal fruits</p>
+            <p class="price">₹150 / kg</p>
+            <button onclick="addToCart('Fruit Mix', 150)">Add to Cart</button>
+        </div>
+
+        <div class="fruit-card">
+            <img src="https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=600&q=80" alt="Fresh citrus fruits">
+            <h3>🍋 Lemon (Nimbu)</h3>
+            <p>Fresh aur khatte nimbu</p>
+            <p class="price">₹60 / kg</p>
+            <button onclick="addToCart('Lemon', 60)">Add to Cart</button>
+        </div>
+
+        <div class="fruit-card">
+            <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80" alt="Pineapple">
+            <h3>🍍 Pineapple (Ananas)</h3>
+            <p>Sweet aur juicy pineapple</p>
+            <p class="price">₹70 / piece</p>
+            <button onclick="addToCart('Pineapple', 70)">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <section id="cart">
+        <h2>🛒 Aapka Cart</h2>
+        <p id="cartItems">Abhi cart khaali hai.</p>
+        <h3 id="total">Total: ₹0</h3>
+        <button onclick="checkout()">Order Now</button>
+    </section>
+
+    <footer>
+        <p>© <span id="year"></span> Fresh Fruits Store | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const items = document.getElementById("cartItems");
+
+            items.innerHTML = cart.length
+                ? cart.map(item =>
+                    `${item.name} - ₹${item.price}`
+                  ).join("<br>")
+                : "Abhi cart khaali hai.";
+
+            document.getElementById("total").textContent =
+                "Total: ₹" + total;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Pehle cart mein fruits add karein!");
+                return;
+            }
+
+            const order = cart.map(item =>
+                item.name + " - ₹" + item.price
+            ).join("\n");
+
+            const message =
+                "Hello! Mujhe fruits order karne hain:\n" +
+                order + "\nTotal: ₹" + total;
+
+            alert("Aapka order summary:\n\n" + message);
+        }
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+
