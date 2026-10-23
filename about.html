@@ -1,1 +1,221 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - My Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: #172554;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #facc15;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #00000010;
+        }
+
+        h2 {
+            color: #4f46e5;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: #eef2ff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .feature h3 {
+            color: #3730a3;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #3730a3;
+        }
+
+        footer {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 30px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>About Us</h1>
+        <p>Hamare baare mein jaaniye</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main class="container">
+
+        <section class="card">
+            <h2>Hamare Baare Mein</h2>
+            <p>
+                Welcome to our website! Hamara uddeshya users ko
+                achhi jaankari, useful services aur ek behtar online
+                experience pradan karna hai.
+            </p>
+            <p>
+                Hum technology ka upyog karke naye ideas ko
+                ek useful aur simple website mein badalne ki koshish
+                karte hain.
+            </p>
+            <button onclick="showMessage()">Read More</button>
+            <p id="moreText" hidden>
+                Hamari website ko users ke liye simple, fast aur
+                mobile-friendly banaya gaya hai. Hamara focus
+                quality aur user satisfaction par hai.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Hamara Mission</h2>
+            <p>
+                Hamara mission technology ke madhyam se logon ko
+                behtar jaankari aur upyogi online services dena hai.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Hum Kya Karte Hain?</h2>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>🌐 Web Development</h3>
+                    <p>Modern aur responsive websites banana.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>💡 Innovation</h3>
+                    <p>Naye ideas aur creative solutions.</p>
+                </div>
+
+                <div class="feature">
+                    <h3>🤝 User Support</h3>
+                    <p>Users ko behtar experience dena.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Contact Us</h2>
+            <p>Aapse judkar humein khushi hogi!</p>
+            <p>Email: yourname@example.com</p>
+            <button onclick="location.href='contact.html'">
+                Contact Now
+            </button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> My Website. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function showMessage() {
+            const text = document.getElementById("moreText");
+
+            text.hidden = !text.hidden;
+
+            document.querySelector(".card button").textContent =
+                text.hidden ? "Read More" : "Read Less";
+        }
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+
