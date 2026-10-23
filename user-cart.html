@@ -1,1 +1,211 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shopping Cart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #ddd;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .details {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .price {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .quantity button {
+            padding: 5px 12px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background: #eee;
+        }
+
+        .quantity span {
+            padding: 0 10px;
+        }
+
+        .remove {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 9px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .summary {
+            text-align: right;
+            margin-top: 25px;
+        }
+
+        .checkout {
+            background: #198754;
+            color: white;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>My Shopping Cart</h1>
+
+    <div id="cart-items"></div>
+
+    <div class="summary">
+        <h2>Total: ₹<span id="total">0</span></h2>
+        <button class="checkout" onclick="checkout()">
+            Proceed to Checkout
+        </button>
+    </div>
+</div>
+
+<script>
+    let cart = [
+        {
+            id: 1,
+            name: "Wireless Headphones",
+            price: 1499,
+            quantity: 1,
+            image: "https://placehold.co/100x100?text=Headphones"
+        },
+        {
+            id: 2,
+            name: "Smart Watch",
+            price: 1999,
+            quantity: 1,
+            image: "https://placehold.co/100x100?text=Watch"
+        }
+    ];
+
+    function displayCart() {
+        const cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = "";
+
+        if (cart.length === 0) {
+            cartItems.innerHTML =
+                '<div class="empty">Your cart is empty!</div>';
+        }
+
+        cart.forEach(item => {
+            cartItems.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+
+                    <div class="details">
+                        <h3>${item.name}</h3>
+                        <p class="price">₹${item.price}</p>
+
+                        <div class="quantity">
+                            <button onclick="changeQuantity(${item.id}, -1)">−</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="changeQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+
+                    <button class="remove"
+                        onclick="removeItem(${item.id})">
+                        Remove
+                    </button>
+                </div>
+            `;
+        });
+
+        const total = cart.reduce(
+            (sum, item) => sum + item.price * item.quantity, 0
+        );
+
+        document.getElementById("total").textContent =
+            total.toLocaleString("en-IN");
+    }
+
+    function changeQuantity(id, change) {
+        const item = cart.find(product => product.id === id);
+
+        if (item) {
+            item.quantity += change;
+
+            if (item.quantity < 1) {
+                item.quantity = 1;
+            }
+        }
+
+        displayCart();
+    }
+
+    function removeItem(id) {
+        cart = cart.filter(item => item.id !== id);
+        displayCart();
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        alert("Checkout demo: Payment system is not connected yet.");
+    }
+
+    displayCart();
+</script>
+
+</body>
+</html>
+
