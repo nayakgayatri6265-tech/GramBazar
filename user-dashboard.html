@@ -1,1 +1,199 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        header {
+            background: #198754;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header button {
+            background: white;
+            color: #198754;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            margin-bottom: 8px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ddd;
+        }
+
+        .card h3 {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .card p {
+            font-size: 28px;
+            font-weight: bold;
+            color: #198754;
+        }
+
+        .menu {
+            background: white;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ddd;
+        }
+
+        .menu h2 {
+            margin-bottom: 18px;
+        }
+
+        .menu a {
+            display: block;
+            padding: 14px;
+            margin: 10px 0;
+            background: #f4f6f9;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .menu a:hover {
+            background: #d9f2e4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px;
+            }
+
+            .container {
+                margin: 10px auto;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>User Dashboard</h1>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<div class="container">
+
+    <section class="welcome">
+        <h2>Welcome, User!</h2>
+        <p>Manage your account and shopping activity here.</p>
+    </section>
+
+    <section class="dashboard">
+
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p id="orders">5</p>
+        </div>
+
+        <div class="card">
+            <h3>Wishlist Items</h3>
+            <p id="wishlist">3</p>
+        </div>
+
+        <div class="card">
+            <h3>Cart Items</h3>
+            <p id="cart">2</p>
+        </div>
+
+        <div class="card">
+            <h3>Account Status</h3>
+            <p style="font-size: 22px;">Active</p>
+        </div>
+
+    </section>
+
+    <section class="menu">
+        <h2>My Account</h2>
+
+        <a href="user-profile.html">👤 My Profile</a>
+        <a href="user-cart.html">🛒 My Shopping Cart</a>
+        <a href="user-orders.html">📦 My Orders</a>
+        <a href="user-wishlist.html">❤️ My Wishlist</a>
+        <a href="loca-products.html">🛍️ Browse Products</a>
+        <a href="products-desc.html">📄 Product Description</a>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 My Shopping Website</p>
+</footer>
+
+<script>
+    function logout() {
+        const confirmLogout = confirm(
+            "Are you sure you want to logout?"
+        );
+
+        if (confirmLogout) {
+            window.location.href = "login.html";
+        }
+    }
+</script>
+
+</body>
+</html>
+
